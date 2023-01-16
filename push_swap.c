@@ -1,33 +1,44 @@
 #include "push_swap.h"
 
-int main()
+int main(int ac, char **av)
 {
-    t_data *data;
-    data->stack_a = malloc (5 * (sizeof(int)));
-    data->stack_b = malloc (5 * (sizeof(int)));
-    data->stack_a[0] = 4;
-    data->stack_a[1] = 2;
-    data->stack_a[2] = 3;
-    data->stack_a[3] = 1;
-    data->stack_a[4] = '\0';
-
-    data->stack_b[0] = 7;
-    data->stack_b[1] = 1;
-    data->stack_b[2] = 2;
-    data->stack_b[3] = 9;
-    data->stack_b[4] = '\0';
-    int i = 0;
-    while(data->stack_a[i] && data->stack_b[i])
+    if(ac > 1)
     {
-        printf("%d    %d\n", data->stack_a[i], data->stack_b[i]);
-        i++;
-    }
-    printf("-------------\n"),
-    rra(data);
-    i = 0;
-    while(data->stack_a[i] && data->stack_b[i])
-    {
-        printf("%d    %d\n", data->stack_a[i], data->stack_b[i]);
-        i++;
+        t_data *data;
+        data = malloc (sizeof(t_data));
+        int len = 1;
+        int i = 1;
+        int j = 0;
+        int x = 0;
+        while(av[len])
+            len++;
+        len++;
+        data->stack_a = malloc (len * sizeof(int));
+        while(av[i])
+        {
+            if(issspace(av[i]))
+            {
+                data->splited = ft_split(av[i], ' ');
+                while(data->splited[x])
+                {
+                    data->stack_a[j] = atoi(data->splited[x]);
+                    x++;
+                    j++;
+                }
+            }
+            data->stack_a[j] = atoi(av[i]);
+            i++;
+            j++;
+        }
+        data->stack_a[j - 1] = '\0';
+        i = 0;
+        j = 0;
+        while(data->stack_a[i] && data->stack_a)
+        {
+            printf("%d   i = %d\n", data->stack_a[i], i);
+            i++;
+        }
+        
     }
 }
+

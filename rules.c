@@ -27,7 +27,6 @@ void ss(t_data *data)
 void ra(t_data *data)
 {
     int temp;
-    int temp1;
     int len;
     int i;
 
