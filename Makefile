@@ -4,7 +4,7 @@ INC = push_swap.h
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
-SRCS    = ft_split.c push_swap.c rules.c utils.c
+SRCS    = ft_split.c push_swap.c rules.c utils.c set.c
 
 OBJS = $(SRCS:.c=.o)
 

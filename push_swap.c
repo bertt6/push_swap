@@ -10,6 +10,17 @@ int main(int ac, char **av)
         int i = 1;
         int j = 0;
         int x = 0;
+        while(av[i])
+        {
+            if(issspace(av[i]))
+            {
+                data->splited1 = ft_split(av[i], ' ');
+                
+            }
+        }
+
+
+
         while(av[len])
             len++;
         len++;
@@ -30,7 +41,12 @@ int main(int ac, char **av)
             i++;
             j++;
         }
-        data->stack_a[j - 1] = '\0';
+
+        data->stack_a[j] = '\0';
+        if(is_sorted(data->stack_a))
+            printf("Error\n");
+        else
+            printf("Stack is sorted Error");
         i = 0;
         j = 0;
         while(data->stack_a[i] && data->stack_a)
@@ -38,7 +54,13 @@ int main(int ac, char **av)
             printf("%d   i = %d\n", data->stack_a[i], i);
             i++;
         }
-        
+        printf("arguman count : %d\n", ac - 1);
+        printf("--------");
+        i = 0;
+        while(data->splited[i])
+        {
+            printf("splited : %s\n", data->splited[i]);
+            i++;
+        }
     }
 }
-
