@@ -1,69 +1,35 @@
 #include "push_swap.h"
 
-void sa(t_data *data)
+void    swap(t_data **data)
 {
-    int temp;
+    t_data *temp;
 
-    temp = data->stack_a[0];
-    data->stack_a[0] = data->stack_a[1];
-    data->stack_a[1] = temp;
+    if(ft_lstsize(*data) < 2)
+        return ;
+    temp = *data;
+    temp = (*data)->next;
+    (*data)->next = temp->next;
+    temp->next = *data;
+    *data = temp;
 }
 
-void sb(t_data *data)
+void    sa(t_data **a_swap)
 {
-    int temp;
-
-    temp = data->stack_b[0];
-    data->stack_b[0] = data->stack_b[1];
-    data->stack_b[1] = temp;
+    swap(a_swap);
+    write(1, "sa\n", 3);
 }
 
-void ss(t_data *data)
+void    sb(t_data **b_swap)
 {
-    sa(data);
-    sb(data);
+    swap(b_swap);
+    write(1, "sb\n", 3);
 }
 
-void ra(t_data *data)
+void    ss(t_data **a_swap, t_data **b_swap)
 {
-    int temp;
-    int len;
-    int i;
-
-    len = 0;
-    i = 0;
-    temp = data->stack_a[0];
-    while(data->stack_a[len])
-        len++;
-    while(data->stack_a[i])
-    {
-        data->stack_a[i - 1] = data->stack_a[i];
-        i++;
-    }
-    data->stack_a[len - 1] = temp;
-}
-
-void rb(t_data *data)
-{
-    int temp;
-    int len;
-    int i;
-
-    len = 0;
-    i = 0;
-    temp = data->stack_b[0];
-    while(data->stack_b[len])
-        len++;
-    while(data->stack_b[i])
-    {
-        data->stack_b[i - 1] = data->stack_b[i];
-        i++;
-    }
-    data->stack_b[len - 1] = temp;
-}
-
-void rr(t_data *data)
-{
-    ra(data);
-    rb(data);
+    if((ft_lstsize(*a_swap) < 2) || (ft_lstsize(*b_swap) < 2))
+        return ;
+    swap(a_swap);
+    swap(b_swap);
+    write(1, "ss\n", 3);
 }

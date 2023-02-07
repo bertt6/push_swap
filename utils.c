@@ -47,3 +47,9 @@ int witchspace(char *av)
     }
     return 0;
 }
+
+void	put_error(char *str)
+{
+	ft_putstr_fd(str, 1);
+	exit (0);
+}

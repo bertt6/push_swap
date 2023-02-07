@@ -1,39 +1,23 @@
-NAME    = push_swap
-CC = gcc
-INC = push_swap.h
-CFLAGS = -Wall -Wextra -Werror
-RM = rm -rf
+NAME = push_swap
 
-SRCS    = ft_split.c push_swap.c rules.c utils.c set.c
+SRCS = $(wildcard *.c libft/*.c)
 
 OBJS = $(SRCS:.c=.o)
 
-Y = "\033[33m"
-R = "\033[31m"
-G = "\033[32m"
-B = "\033[34m"
-X = "\033[0m"
-UP = "\033[A"
-CUT = "\033[K"
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -g  -Iinc
 
 all: $(NAME)
 
-$(NAME): $(OBJS) 
-	@$(CC) ${CFLAGS} $(OBJS) -o $(NAME) 
-	@echo $(B)push_swap is ready
-
-%.o: %.c $(INC)
-	@echo $(R)Complining [$<]
-	@$(CC) -c $< -o $@ $(CFLAGS)
+$(NAME): $(OBJS)
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
-	@$(RM) $(OBJS)
-	@echo $(R)Removed [$(OBJS)]
+	@rm -f $(OBJS)
 
 fclean: clean
-	@$(RM) $(NAME)
-	@echo $(R)Removed [$(NAME)]
+	@rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all, clean, fclean, re
+.PHONY: all clean fclean re
