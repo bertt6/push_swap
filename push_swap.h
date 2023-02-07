@@ -10,7 +10,7 @@ typedef struct s_data
 {
 	int				content;
 	int				flag;
-	struct s_list	*next;
+	struct s_data	*next;
 }	t_data;
 
 void 	rotate(t_data **rot);

@@ -7,7 +7,7 @@ void    push(t_data **src, t_data **dst)
     if(ft_lstsize(*src) == 0)
         return ;
     temp = *src;
-    src = (*src)->next;
+    *src = (*src)->next;
     ft_lstadd_front(dst, temp);
 }
 

@@ -8,11 +8,10 @@ void    stack_split(t_data **stack, char *av)
 
     i = -1;
     x = ft_split(av, 32);
-    while(x[i])
+    while(x[++i])
     {
         new = ft_lstnew(ft_atoi(x[i]));
         ft_lstadd_back(stack, new);
-        i++;
     }
 }
 
@@ -25,7 +24,7 @@ void    stack_new(t_data **stack, char **av)
     while(av[i])
     {
         if(ft_strchr(av[i], ' ') != NULL)
-            stack_split(stack, new_stack);
+            stack_split(stack, av[i]);
         else
         {
             new_stack = ft_lstnew(ft_atoi(av[i]));
@@ -33,8 +32,22 @@ void    stack_new(t_data **stack, char **av)
         }
         i++;
     }
-    check_armum(stack);
+    check_argum(stack);
+
 }
+
+void    printlist(t_data **stack)
+{
+    t_data *tmp;
+
+    tmp = *stack;
+    while(tmp)
+    {
+        printf("%d\n", tmp->content);
+        tmp = tmp->next;
+    }
+}
+
 
 int main(int ac, char **av)
 {
@@ -48,6 +61,7 @@ int main(int ac, char **av)
     *a_list = NULL;
     *b_list = NULL;
     stack_new(a_list, av);
+    printlist(a_list);
     
 }
 

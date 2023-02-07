@@ -3,7 +3,7 @@
 void    rev_rot(t_data **stack)
 {
     t_data *lastbutone;
-    t_data *last;
+    
 
     if(ft_lstsize(*stack) < 2)
         return ;

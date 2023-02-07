@@ -1,25 +1,6 @@
 #include "push_swap.h"
 
-void argcontrol(t_data *data, char **av)
-{
-    int i = 1;
-    int j = 0;
-    while(av[i])
-    {
-        j = 0;
-        while(av[i][j])
-        {
-            if(av[i][j] == 32)
-            {
-                data->splited = ft_split(av[i], ' ');
-                write(1, "Splitlendi", 11);
-                return ;
-            }
-            j++;
-        }
-        i++;
-    }
-}
+
 
 int issspace(char *av)
 {
