@@ -17,6 +17,12 @@ void pa(t_data **b_push, t_data **a_push)
     write(1, "pa\n", 3);
 }
 
+void pb(t_data **a_push, t_data **b_push)
+{
+    push(a_push, b_push);
+    write(1, "pb\n", 3);
+}
+
 void    pp(t_data **a_push, t_data **b_push)
 {
     push(a_push, b_push);

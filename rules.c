@@ -6,7 +6,6 @@ void    swap(t_data **data)
 
     if(ft_lstsize(*data) < 2)
         return ;
-    temp = *data;
     temp = (*data)->next;
     (*data)->next = temp->next;
     temp->next = *data;

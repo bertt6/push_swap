@@ -48,6 +48,41 @@ void    printlist(t_data **stack)
     }
 }
 
+int stacklen(t_data **stack)
+{
+    t_data *tmp;
+    int i;
+
+    i = 0;
+    tmp = *stack;
+    while(tmp)
+    {
+        i++;
+        tmp = tmp->next;
+    }
+    return i;
+}
+
+void is_sorted(t_data **stack)
+{
+    t_data *tmp;
+    int i = 0;
+    int len = stacklen(stack);
+
+    tmp = *stack;
+    while(tmp->next)
+    {
+        if(tmp->content < tmp->next->content)
+            i++;
+        tmp = tmp->next;
+    }
+    if(i == len - 1)
+    {
+        write(1, "sorted error\n", 13);
+        exit(0);
+    }
+
+}
 
 int main(int ac, char **av)
 {
@@ -61,7 +96,9 @@ int main(int ac, char **av)
     *a_list = NULL;
     *b_list = NULL;
     stack_new(a_list, av);
+    is_sorted(a_list);
     printlist(a_list);
-    
+    stacklen(a_list);
+    return (0);
 }
 
