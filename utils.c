@@ -1,36 +1,39 @@
 #include "push_swap.h"
 
-
-
-int issspace(char *av)
-{
-    int i = 0;
-    while(av[i])
-    {
-        if(av[i] == 32)
-            return (1);
-        i++;
-    }
-    return 0;
-}
-
-int witchspace(char *av)
-{
-    int i = 1;
-    while(av[i])
-    {
-        while(av[i])
-        {
-            if(av[i] == 32)
-                return i;
-        }
-        i++;
-    }
-    return 0;
-}
-
 void	put_error(char *str)
 {
 	ft_putstr_fd(str, 1);
 	exit (0);
+}
+
+int find_min(t_data **a_list)
+{
+    t_data *tmp;
+    int min;
+
+    tmp = *a_list;
+    min = tmp->content;
+    while(tmp)
+    {
+        if(tmp->content < min)
+            min = tmp->content;
+        tmp = tmp->next;
+    }
+    return min;
+}
+
+int find_max(t_data **a_list)
+{
+    t_data *tmp;
+    int max;
+
+    tmp = *a_list;
+    max = tmp->content;
+    while(tmp)
+    {
+        if(tmp->content > max)
+            max = tmp->content;
+        tmp = tmp->next;
+    }
+    return max;
 }

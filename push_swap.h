@@ -25,8 +25,16 @@ void    ss(t_data **a_swap, t_data **b_swap);
 
 void    push(t_data **src, t_data **dst);
 void 	pa(t_data **b_push, t_data **a_push);
+void    pb(t_data **a_push, t_data **b_push);
 void    pp(t_data **a_push, t_data **b_push);
+
 void    rev_rot(t_data **stack);
+void 	rra(t_data **stack);
+void 	rrb(t_data **stack);
+void 	rrr(t_data **a_list, t_data **b_list);
+
+int 	find_max(t_data **a_list);
+int 	find_min(t_data **a_list);
 
 void	put_error(char *str);
 
@@ -34,10 +42,6 @@ void	check_argum(t_data **stack);
 
 int	    ftcount(char const *s, char c);
 char    **ft_split(char const *s, char c);
-
-void	 argcontrol(t_data *data, char **av);
-int     issspace(char *av);
-int     witchspace(char *av);
 
 char	*ft_strchr(const char *s, int c);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
