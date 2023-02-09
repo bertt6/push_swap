@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void    stack_split(t_data **stack, char *av)
+void    stack_split(char *av, t_data **stack)
 {
     int i;
     char **x;
@@ -13,6 +13,9 @@ void    stack_split(t_data **stack, char *av)
         new = ft_lstnew(ft_atoi(x[i]));
         ft_lstadd_back(stack, new);
     }
+    while(x[i])
+        free(x[i++]);
+    free(x);
 }
 
 void    stack_new(t_data **stack, char **av)
@@ -24,7 +27,7 @@ void    stack_new(t_data **stack, char **av)
     while(av[i])
     {
         if(ft_strchr(av[i], ' ') != NULL)
-            stack_split(stack, av[i]);
+            stack_split(av[i], stack);
         else
         {
             new_stack = ft_lstnew(ft_atoi(av[i]));
@@ -81,67 +84,59 @@ void is_sorted(t_data **stack)
         exit(0);
     }
 
-}
 
-void    triple_sort(t_data **a_list, t_data **b_list)
-{ 
-    int i;
-    int len;
-    int min;
-    int max;
-
-    i = 0;
-    len = stacklen(a_list);
-    min = find_min(a_list);
-    max = find_max(a_list);
-    while(i < len)
-    {
-        if((*a_list)->content == min)
-        {
-            pb(a_list, b_list);
-            break;
-        }
-        i++;
-    }
-    if((*a_list)->content > (*a_list)->next->content)
-    {
-        sa(a_list);
-    }
-    pa(b_list, a_list);
-}
-
-void    four_arguman_sort(t_data **a_list, t_data **b_list)
+int isssorted(t_data **stack)
 {
-    int i;
-    int len;
-    int min;
-    int max;
+    t_data *tmp;
+    int i = 0;
+    int len = stacklen(stack);
 
-    i = 0;
-    len = stacklen(a_list);
-    min = find_min(a_list);
-    max = find_max(a_list);
-    while(i < len)
+    tmp = *stack;
+    while(tmp->next)
     {
-        if((*a_list)->content == min)
-        {
-            pb(a_list, b_list);
-            break;
-        }
-        ra(a_list);
-        i++;
+        if(tmp->content < tmp->next->content)
+            i++;
+        tmp = tmp->next;
     }
-    triple_sort(a_list, b_list);
-    pa(b_list, a_list);
+    if(i == len - 1)
+    {
+        write(1, "sorted error\n", 13);
+        return 0;
+    }
+    return 1;
 }
 
-void sorting_start(t_data **a_list, t_data **b_list, int ac)
+void	radix_sort(t_data **list_a, t_data **list_b)
 {
-    if(ac == 4)
+	int		i;
+	int		j;
+	int		size;
+
+	i = 0;
+	size = ft_lstsize(*list_a);
+	while (!isssorted(list_a))
+	{
+		j = 0;
+		while (j++ < size)
+		{
+			if ((((*list_a)->flag >> i) & 1) == 1)
+				ra(list_a);
+			else
+				pb(list_a, list_b);
+		}
+		while (ft_lstsize(*list_b) != 0)
+			pa(list_b, list_a);
+		i++;
+	}
+}
+
+void sorting_start(t_data **a_list, t_data **b_list, int len)
+{
+    if(len == 3)
         triple_sort(a_list, b_list);
-    if(ac == 3)
+    if(len == 2)
         sa(a_list);
-    if(ac == 5)
+    if(len == 4)
         four_arguman_sort(a_list, b_list);
 }
 
@@ -149,6 +144,7 @@ int main(int ac, char **av)
 {
     t_data **a_list;
     t_data **b_list;
+    int len;
 
     if(ac < 2)
         return (0);
@@ -157,19 +153,10 @@ int main(int ac, char **av)
     *a_list = NULL;
     *b_list = NULL;
     stack_new(a_list, av);
-    sorting_start(a_list, b_list, ac);
+    len = stacklen(a_list);
+    sorting_start(a_list, b_list, len);
     printlist(a_list);
-    // is_sorted(a_list);
-    // stacklen(a_list);
-    // printf("Sıralanacaklar:\n");
-    // printf("-----------------\n");
-    // printlist(a_list);
-    // printf("İşlemler :\n");
-    // printf("-----------------\n");
-    // sorting_start(a_list, b_list, ac);
-    // printf("Sıralanmışlar:\n");
-    // printf("-----------------\n");
-    // printlist(a_list);
+
     
     return (0);
 }

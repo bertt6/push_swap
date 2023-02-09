@@ -13,6 +13,7 @@ int find_min(t_data **a_list)
 
     tmp = *a_list;
     min = tmp->content;
+
     while(tmp)
     {
         if(tmp->content < min)
@@ -20,20 +21,4 @@ int find_min(t_data **a_list)
         tmp = tmp->next;
     }
     return min;
-}
-
-int find_max(t_data **a_list)
-{
-    t_data *tmp;
-    int max;
-
-    tmp = *a_list;
-    max = tmp->content;
-    while(tmp)
-    {
-        if(tmp->content > max)
-            max = tmp->content;
-        tmp = tmp->next;
-    }
-    return max;
 }
