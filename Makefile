@@ -10,7 +10,7 @@ CFLAGS = -Wall -Wextra -Werror -g  -Iinc
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	@$(CC)  $(OBJS) $(CFLAGS) -o $(NAME)
 
 clean:
 	@rm -f $(OBJS)

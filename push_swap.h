@@ -17,7 +17,7 @@ void 	rotate(t_data **rot);
 void    ra(t_data **a_rot);
 void 	rb(t_data **b_rot);
 void    rr(t_data **a_rot, t_data **b_rot);
-
+void 	setFlag(t_data **stack);
 void    swap(t_data **data);
 void    sa(t_data **a_swap);
 void    sb(t_data **b_swap);
@@ -33,13 +33,19 @@ void 	rra(t_data **stack);
 void 	rrb(t_data **stack);
 void 	rrr(t_data **a_list, t_data **b_list);
 
-int 	find_max(t_data **a_list);
+void    triple_sort(t_data **a_list, t_data **b_list);
+void    four_arguman_sort(t_data **a_list, t_data **b_list);
+int 	stacklen(t_data **stack);
+int 	issorted(t_data **stack);
+
+
 int 	find_min(t_data **a_list);
 
 void	put_error(char *str);
+void go_radix_go_go(t_data **a_list, t_data **b_list);
 
 void	check_argum(t_data **stack);
-
+void 	is_sorted(t_data **stack);
 int	    ftcount(char const *s, char c);
 char    **ft_split(char const *s, char c);
 
